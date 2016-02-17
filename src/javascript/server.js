@@ -3,14 +3,14 @@ import express from 'express';
 import expressState from 'express-state';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import {provideContext} from 'fluxible-addons-react';
+import { provideContext } from 'fluxible-addons-react';
 import app from './app';
 import Html from './components/Html.jsx';
 
 // Routing
-import {Router, RouterContext, match} from 'react-router';
+import { Router, RouterContext, match } from 'react-router';
 import routes from './components/Routes.jsx';
-import {createMemoryHistory} from 'react-router';
+import { createMemoryHistory } from 'react-router';
 
 import fetchRouteData from './utils/fetchRouteData';
 
@@ -22,12 +22,12 @@ expressState.extend(server);
 
 server.use('/', express.static(__dirname + '/../../build'));
 
-server.use(function (req, res, next) {
+server.use(function reactEndpoint(req, res, next) {
     const location = createMemoryHistory().createLocation(req.url);
     const context = app.createContext({
         env: process.env.NODE_ENV || 'local',
         siteUrl: process.env.SITE_URL || req.protocol + '://' + req.hostname,
-        //Uncomment this code to specify where on S3 remote assets are stored
+        // Uncomment this code to specify where on S3 remote assets are stored
         // aws: {
         //     bucket: process.env.S3_BUCKET || 'madeinhaus',
         //     prefix: process.env.S3_PREFIX || 'react-flux-gulp-starter',
@@ -39,7 +39,6 @@ server.use(function (req, res, next) {
     });
 
     match({ routes, location }, (error, redirectLocation, renderProps) => {
-
         if (redirectLocation) {
             res.redirect(301, redirectLocation.pathname + redirectLocation.search);
         } else if (error) {
@@ -47,7 +46,6 @@ server.use(function (req, res, next) {
         } else if (renderProps === null) {
             res.status(404).send('Not found');
         } else {
-
             fetchRouteData(context, renderProps)
                 .then(() => {
                     const appState = app.dehydrate(context);
@@ -64,8 +62,8 @@ server.use(function (req, res, next) {
                         title: 'react-flux-gulp-starter - madeinhaus.com',
                         context: context.getComponentContext(),
                         state: res.locals.state,
-                        markup: markup,
-                        location: location
+                        markup,
+                        location,
                     }));
 
                     res.send('<!DOCTYPE html>' + html);
@@ -77,7 +75,7 @@ server.use(function (req, res, next) {
     });
 });
 
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 const instance = server.listen(port, () => {
     debug('Listening on port ' + port);
 
@@ -90,7 +88,7 @@ const instance = server.listen(port, () => {
         });
 
         setTimeout(() => {
-            debug('Server didn\'t stop in top, terminating');
+            debug('Server didn\'t stop in time, terminating');
             process.exit(0);
         }, 9.9 * 1000);
     });
