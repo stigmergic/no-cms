@@ -1,10 +1,10 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import Navigation from './Navigation';
-import {connectToStores}  from 'fluxible-addons-react';
+import { connectToStores } from 'fluxible-addons-react';
 
 class Application extends React.Component {
 
-    render () {
+    render() {
         return (
             <div>
                 <nav>
@@ -19,9 +19,13 @@ class Application extends React.Component {
 
 }
 
-Application = connectToStores(Application, ['ApplicationStore'], (context, props) => ({
-    appState: context.getStore('ApplicationStore').getState()
+Application.propTypes = {
+    children: PropTypes.node,
+    appState: PropTypes.object,
+};
+
+Application = connectToStores(Application, ['ApplicationStore'], (context) => ({
+    appState: context.getStore('ApplicationStore').getState(),
 }));
 
 export default Application;
-

@@ -8,7 +8,7 @@ import app from './app';
 import Html from './components/Html.jsx';
 
 // Routing
-import { Router, RouterContext, match } from 'react-router';
+import { RouterContext, match } from 'react-router';
 import routes from './components/Routes.jsx';
 import { createMemoryHistory } from 'react-router';
 
@@ -17,7 +17,6 @@ import fetchRouteData from './utils/fetchRouteData';
 const debug = d('Server');
 
 const server = express();
-
 expressState.extend(server);
 
 server.use('/', express.static(__dirname + '/../../build'));

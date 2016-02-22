@@ -5,7 +5,7 @@ var port = parseInt(process.env.PORT, 10) || 3000;
 module.exports = {
     nodemon: {
         script: './server.js',
-        ext: 'js',
+        ext: 'js,jsx',
         ignore: ['build/*', 'node_modules/*'],
         env: {
             'NODE_ENV': 'development',
@@ -40,12 +40,12 @@ module.exports = {
         dest: dest
     },
     staticAssets: {
-        // Put an array of folder globs, such as src + '/**/fonts/**/*', 
+        // Put an array of folder globs, such as src + '/**/fonts/**/*',
         // src + '/**/html/**/*'
         src: [
             // src + '/**/fonts/**/*',
             // src + '/**/html/**/*',
-        ], 
+        ],
         dest: dest
     },
     browserify: {
