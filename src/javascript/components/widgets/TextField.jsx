@@ -1,4 +1,6 @@
 import React from 'react';
+import ContentEditable from 'react-contenteditable';
+
 
 class TextField extends React.Component {
     constructor(props) {
@@ -12,7 +14,7 @@ class TextField extends React.Component {
     }
 
     onInputChange(e) {
-        console.log("on input change: ", e);
+        console.log(`on input change: ${e}  path: ${this.props.path}`);
     }
 
     onSubmit(e) {
@@ -28,15 +30,19 @@ class TextField extends React.Component {
         const path = this.props.path;
 
         return (
-            <div>{path} {item.val()}</div>
+            <ContentEditable
+                html={item.val()}
+                disabled={false}
+                onChange={this.onInputChange}
+            />
         );
     }
 
 }
 
 TextField.propTypes = {
-    item: React.PropTypes.OBJECT,
-    path: React.PropTypes.STRING,
+    item: React.PropTypes.object,
+    path: React.PropTypes.string,
 };
 
 export default TextField;
