@@ -15,10 +15,10 @@
         > Jenkins is the leading open source automation server. Built with Java, it provides hundreds of plugins to support building, testing, deploying and automation for virtually any project.
 
 
-- Gulp - Streaming build system
-- Babel ES6
-- browserSync
-- browserify
+- Gulp - Streaming build system (used for development and deployment)
+    - Babel ES6
+    - browserSync
+    - browserify
 
 - can be deployed to EC2 or Heroku (or most anywhere else! - if you buy the Koolaid)
 
@@ -37,5 +37,7 @@
 
     >  A Pluggable Container for Isomorphic Flux Applications
 
-- Database Postgresql using ORM Sequelize (http://docs.sequelizejs.com/en/latest/)
-- S3/Cloudfront
+- Database
+    - Postgresql using ORM Sequelize (http://docs.sequelizejs.com/en/latest/)
+- Static Assets / CDN / Application Caching
+    - S3/Cloudfront
