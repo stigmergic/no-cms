@@ -4,17 +4,27 @@ class ApplicationStore extends BaseStore {
 
     constructor(dispatcher) {
         super(dispatcher);
-        this.stuff = null;
+        this.login = false;
+        this.user = {};
     }
 
-    onDoStuff(stuff) {
-        this.stuff = stuff;
+    onLogin() {
+        this.login = true;
+        this.user = { name: 'joshua' };
         this.emitChange();
     }
 
+    onLogout() {
+        this.login = false;
+        this.user = {};
+        this.emitChange();
+    }
+
+
     getState() {
         return {
-            stuff: this.stuff
+            login: this.login,
+            user: this.user,
         };
     }
 
@@ -23,7 +33,8 @@ class ApplicationStore extends BaseStore {
     }
 
     rehydrate(state) {
-        this.stuff = state.stuff;
+        this.login = state.login;
+        this.user = state.user;
     }
 
 }
@@ -31,7 +42,8 @@ class ApplicationStore extends BaseStore {
 ApplicationStore.storeName = 'ApplicationStore';
 
 ApplicationStore.handlers = {
-    'DO_STUFF': 'onDoStuff'
+    'LOGIN': 'onLogin',
+    'LOGOUT': 'onLogout',
 };
 
 export default ApplicationStore;

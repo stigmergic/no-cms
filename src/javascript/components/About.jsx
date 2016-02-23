@@ -1,5 +1,4 @@
 import React from 'react';
-import doStuff from '../actions/doStuff';
 
 class About extends React.Component {
 
@@ -13,15 +12,6 @@ class About extends React.Component {
         );
     }
 
-};
-
-// See https://github.com/yahoo/fluxible-action-utils#executemultiple-context-actions-done
-About.load = (context, params) => {
-    return {
-        doStuff: {
-            action: doStuff
-        }
-    };
-};
+}
 
 export default About;
