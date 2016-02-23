@@ -38,6 +38,7 @@
     >  A Pluggable Container for Isomorphic Flux Applications
 
 - Database
-  - Postgresql using ORM Sequelize (http://docs.sequelizejs.com/en/latest/)
+  - Postgresql
+  - multi database support via Sequelize (ORM) (http://docs.sequelizejs.com/en/latest/)
 - Static Assets / CDN / Application Caching
   - S3/Cloudfront
